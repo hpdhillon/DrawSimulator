@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Champions League Draw Simulator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .team-select {
+            width: 200px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #0074c4;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        #draw-results {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Champions League Draw Simulator</h1>
+        <p>Select teams for the draw:</p>
+        <select class="team-select" id="team1">
+            <option value="Team1">Team 1</option>
+            <!-- Add more teams here -->
+        </select>
+        <select class="team-select" id="team2">
+            <option value="Team2">Team 2</option>
+            <!-- Add more teams here -->
+        </select>
+        <button id="draw-button">Draw</button>
+        <div id="draw-results"></div>
+    </div>
+
+    <script>
+        const drawButton = document.getElementById('draw-button');
+        const drawResults = document.getElementById('draw-results');
+
+        drawButton.addEventListener('click', () => {
+            const team1 = document.getElementById('team1').value;
+            const team2 = document.getElementById('team2').value;
+
+            if (team1 === team2) {
+                drawResults.innerHTML = 'Teams must be different!';
+            } else {
+                drawResults.innerHTML = `Draw Result: ${team1} vs ${team2}`;
+            }
+        });
+    </script>
+</body>
+</html>
