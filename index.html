@@ -50,14 +50,37 @@
         const drawResults = document.getElementById('draw-results');
 
         drawButton.addEventListener('click', () => {
-            const team1 = document.getElementById('team1').value;
-            const team2 = document.getElementById('team2').value;
+            const teams = [ "Borussia Dortmund",
+                            "Paris Saint-Germain",
+                            "Porto",
+                            "Roma",
+                            "Real Madrid",
+                            "Ajax",
+                            "Manchester United",
+                            "Barcelona",
+                            "Manchester City",
+                            "Schalke 04",
+                            "Juventus",
+                            "Atletico Madrid",
+                            "Bayern Munich",
+                            "Liverpool",
+                            "Lyon",
+                            "Tottenham Hotspur"
+                        ];
 
-            if (team1 === team2) {
-                drawResults.innerHTML = 'Teams must be different!';
-            } else {
-                drawResults.innerHTML = `Draw Result: ${team1} vs ${team2}`;
+        for (let i = 0; i < teams.length; i++) {
+            for (let j = i + 1; j < teams.length; j++) {
+                const team1 = teams[i];
+                const team2 = teams[j];
+                const drawResults = document.getElementById('drawResults');
+                
+                if (team1 === team2) {
+                    drawResults.innerHTML = 'Teams must be different!';
+                } else {
+                    drawResults.innerHTML += `Draw Result: ${team1} vs ${team2}<br>`;
+                }
             }
+        }
         });
     </script>
 </body>
