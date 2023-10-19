@@ -1,88 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Champions League Draw Simulator</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .team-select {
-            width: 200px;
-        }
-        button {
-            padding: 10px 20px;
-            background-color: #0074c4;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-        }
-        #draw-results {
-            margin-top: 20px;
-        }
-    </style>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1265965632464169"
      crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>Champions League Draw Simulator</h1>
-        <p>Select teams for the draw:</p>
-        <select class="team-select" id="team1">
-            <option value="Team1">Team 1</option>
-            <!-- Add more teams here -->
-        </select>
-        <select class="team-select" id="team2">
-            <option value="Team2">Team 2</option>
-            <!-- Add more teams here -->
-        </select>
-        <button id="draw-button">Draw</button>
-        <div id="draw-results"></div>
-    </div>
-
+    <h1>Champions League Draw Simulator</h1>
+    <button id="drawButton">Simulate Draw</button>
+    <div id="drawResults"></div>
+    
     <script>
-        const drawButton = document.getElementById('draw-button');
-        const drawResults = document.getElementById('draw-results');
+        const teams = [
+            "Borussia Dortmund",
+            "Paris Saint-Germain",
+            "Porto",
+            "Roma",
+            "Real Madrid",
+            "Ajax",
+            "Manchester United",
+            "Barcelona",
+            "Manchester City",
+            "Schalke 04",
+            "Juventus",
+            "Atletico Madrid",
+            "Bayern Munich",
+            "Liverpool",
+            "Lyon",
+            "Tottenham Hotspur"
+        ];
 
-        drawButton.addEventListener('click', () => {
-            const teams = [ "Borussia Dortmund",
-                            "Paris Saint-Germain",
-                            "Porto",
-                            "Roma",
-                            "Real Madrid",
-                            "Ajax",
-                            "Manchester United",
-                            "Barcelona",
-                            "Manchester City",
-                            "Schalke 04",
-                            "Juventus",
-                            "Atletico Madrid",
-                            "Bayern Munich",
-                            "Liverpool",
-                            "Lyon",
-                            "Tottenham Hotspur"
-                        ];
+        const drawButton = document.getElementById("drawButton");
+        const drawResults = document.getElementById("drawResults");
 
-        for (let i = 0; i < teams.length; i++) {
-            for (let j = i + 1; j < teams.length; j++) {
-                const team1 = teams[i];
-                const team2 = teams[j];
-                const drawResults = document.getElementById('drawResults');
-                
-                if (team1 === team2) {
-                    drawResults.innerHTML = 'Teams must be different!';
-                } else {
-                    drawResults.innerHTML += `Draw Result: ${team1} vs ${team2}<br>`;
-                }
+        drawButton.addEventListener("click", () => {
+            drawResults.innerHTML = "";
+            const shuffledTeams = shuffleArray([...teams]);
+
+            for (let i = 0; i < shuffledTeams.length; i += 2) {
+                const team1 = shuffledTeams[i];
+                const team2 = shuffledTeams[i + 1];
+                const drawResult = document.createElement("p");
+                drawResult.textContent = `Draw Result: ${team1} vs ${team2}`;
+                drawResults.appendChild(drawResult);
             }
-        }
         });
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
     </script>
 </body>
 </html>
-
