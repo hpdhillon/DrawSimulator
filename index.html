@@ -6,6 +6,9 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
         select {
             padding: 5px;
@@ -13,6 +16,7 @@
         #result {
             font-size: 24px;
             margin-top: 20px;
+            color: white;
         }
     </style>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1265965632464169"
@@ -34,7 +38,7 @@
     </div>
 
     <script>
-        // JavaScript code to calculate and display the years since a team won the Premier League
+        // JavaScript code to calculate and display the years since a team won the Premier League and change the background
         const teamSelect = document.getElementById("teamSelect");
         const resultDiv = document.getElementById("result");
 
@@ -45,13 +49,22 @@
             "Arsenal": 2004
         };
 
+        const backgrounds = {
+            "Manchester City": "manchester_city_background.jpg",
+            "Liverpool": "liverpool_background.jpg",
+            "Manchester United": "manchester_united_background.jpg",
+            "Arsenal": "arsenal_background.jpg"
+        };
+
         teamSelect.addEventListener("change", () => {
             const selectedTeam = teamSelect.value;
             const currentYear = new Date().getFullYear();
             const yearsSinceWin = currentYear - premierLeagueWinners[selectedTeam];
             resultDiv.innerHTML = `${selectedTeam} last won the Premier League ${yearsSinceWin} years ago in ${premierLeagueWinners[selectedTeam]}.`;
+            document.body.style.backgroundImage = `url(${backgrounds[selectedTeam]})`;
         });
     </script>
 </body>
 </html>
+
 
