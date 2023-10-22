@@ -38,15 +38,15 @@
     </div>
 
     <script>
-        // JavaScript code to calculate and display the years since a team won the Premier League and change the background
+        // JavaScript code to calculate and display the days since a team won the Premier League and change the background
         const teamSelect = document.getElementById("teamSelect");
         const resultDiv = document.getElementById("result");
 
         const premierLeagueWinners = {
-            "Manchester City": 2021,
-            "Liverpool": 1990,
-            "Manchester United": 2013,
-            "Arsenal": 2004
+            "Manchester City": new Date(2023, 5, 23), // Using June 23, 2021, as the date
+            "Liverpool": new Date(1990, 4, 23), // Using May 23, 1990, as the date
+            "Manchester United": new Date(2013, 4, 22), // Using May 22, 2013, as the date
+            "Arsenal": new Date(2004, 4, 15) // Using May 15, 2004, as the date
         };
 
         const backgrounds = {
@@ -58,13 +58,11 @@
 
         teamSelect.addEventListener("change", () => {
             const selectedTeam = teamSelect.value;
-            const currentYear = new Date().getFullYear();
-            const yearsSinceWin = currentYear - premierLeagueWinners[selectedTeam];
-            resultDiv.innerHTML = `${selectedTeam} last won the Premier League ${yearsSinceWin} years ago in ${premierLeagueWinners[selectedTeam]}.`;
+            const currentDate = new Date();
+            const daysSinceWin = Math.floor((currentDate - premierLeagueWinners[selectedTeam]) / (1000 * 60 * 60 * 24));
+            resultDiv.innerHTML = `${selectedTeam} last won the Premier League ${daysSinceWin} days ago on ${premierLeagueWinners[selectedTeam].toDateString()}.`;
             document.body.style.backgroundImage = `url(${backgrounds[selectedTeam]})`;
         });
     </script>
 </body>
 </html>
-
-
